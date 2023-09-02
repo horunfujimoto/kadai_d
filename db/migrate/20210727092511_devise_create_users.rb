@@ -36,12 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text :introduction
 
       t.timestamps null: false
-
-      create_table :favorites do |t|
-        t.integer :follow_id, null: false
-        t.integer :follower_id, null: false
-        t.timestamps
-      end
     end
 
     add_index :users, :email,                unique: true
