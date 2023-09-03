@@ -44,4 +44,21 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  #検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}") #whereメソッドはデータベースから該当データを取得し変数に代入
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%") #完全一致以外の検索方法は、#{word}の前後(もしくは両方に)、%を追記することで定義
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+
 end
+
+#文字検索をしたい時はLIKE句を使う！今回はnameカラムが何タイプ（部分一致とか）に該当されるか検索
