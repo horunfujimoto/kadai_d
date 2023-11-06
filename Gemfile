@@ -56,3 +56,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'jquery-rails' #非同期化に必要
+gem "ruby-openai"
